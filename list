@@ -1,10 +1,11 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class lista3 {
     static Scanner scam = new Scanner(System.in);
 
     public static void main(String[] args) {
-        ex5();
+        ex15();
     }
 
     public static void ex1() {
@@ -17,10 +18,10 @@ public class lista3 {
 
     public static void ex2() {
         for (int i = 1; i <= 250; i++) {
-            if (i % 10 == 0) {
-                System.out.println("Esse numero é multiplo de 10 ");
-            }
             System.out.println(i);
+            if (i % 10 == 0) {
+                System.out.println("O numero acima é multiplo de 10 ");
+            }
         }
 
     }
@@ -53,19 +54,288 @@ public class lista3 {
         System.out.println(soma);
 
     }
-    public static void ex6(){
-        int soma = 0,n1,n2=0;
+
+    public static void ex6() {
+        int soma = 0, n1, n2 = 0;
         System.out.println("insira o inicio da soma");
-        n1=scam.nextInt();
+        n1 = scam.nextInt();
         System.out.println("insira o limite da soma");
-        n2=scam.nextInt();
+        n2 = scam.nextInt();
         for (int i = n1; i <= n2; i += 5) {
             soma += i;
 
         }
-        System.out.println(soma);
+        System.out.println("resultado " + soma);
     }
-    public static void ex7(){
-        
+
+    public static void ex7() {
+        double aumento = 0.015, salario = 1000, nsalario = 0;
+        int ano = 2011;
+        for (int i = 1; i <= 14; i++) {
+
+            nsalario = (salario * aumento) + salario;
+            aumento *= 2;
+            System.out.printf("novo salario é %.2f no ano de %d%n ", nsalario, ano);
+            ano++;
+        }
+
     }
+
+    public static void ex8() {
+        double salarioc, salarioj;
+        int meses = 0;
+        System.out.println("Carlos, insira seu salario");
+        salarioc = scam.nextDouble();
+        salarioj = salarioc / 3;
+
+        while (salarioj < salarioc) {
+            salarioc += salarioc * 0.02;
+            salarioj += salarioj * 0.05;
+            meses++;
+        }
+        System.out.printf("precisou de %d meses para joao obter o salario de %.2f maior que %.2f de carlos", meses,
+                salarioj, salarioc);
+
+    }
+
+    public static void ex9() {
+
+        Random random = new Random();
+        int aleatorio, soma = 0, neg = 0;
+        do {
+            aleatorio = random.nextInt(201) - 100;
+            if (aleatorio > 0) {
+                soma = soma + aleatorio;
+
+            } else {
+                neg++;
+            }
+
+        } while (aleatorio != 0);
+        System.out.println("soma de todos os positivos " + soma);
+        System.out.println("quantidade de numeros negativos " + neg);
+        System.out.println("ultimo numero informado " + aleatorio);
+
+    }
+
+    public static void ex10() {
+        double n, m;
+        do {
+            System.out.println("insira sua nota");
+            n = scam.nextDouble();
+        } while (n < 0 || n > 10);
+        if (n >= 6) {
+            System.out.println("esta aprovado");
+        } else if (n >= 5) {
+            System.out.println("esta de recupeção");
+        } else {
+            System.out.println("esta reprovado");
+        }
+
+    }
+
+    public static void ex11() {
+        int op;
+        System.out.println("1 para imposto");
+        System.out.println("2 para novo salario");
+        System.out.println("3 para classificação");
+        System.out.println("4 para finalizar o programa");
+        System.out.println("Digite a opção desejada");
+        op = scam.nextInt();
+        while (op > 4 || op < 1) {
+            System.out.println("Digite uma das opções");
+            op = scam.nextInt();
+        }
+        switch (op) {
+            case 1:
+                double sl, im, slnovo;
+                System.out.println("insira o salario do funcionario");
+                sl = scam.nextDouble();
+                if (sl <= 1500) {
+                    im = 0.05;
+                } else if (sl <= 3000) {
+                    im = 0.1;
+                } else {
+                    im = 0.15;
+                }
+                slnovo = sl - (sl * im);
+                System.out.printf("aplicando o imposto de %.2f o novo salario fica %.2f", im, slnovo);
+                break;
+            case 2:
+                double sl1, au, slnovo1;
+                System.out.println("insira o salario do funcionario");
+                sl1 = scam.nextDouble();
+                if (sl1 <= 2000) {
+                    au = 130;
+                } else if (sl1 <= 3000) {
+                    au = 150;
+                } else if (sl1 <= 4500) {
+                    au = 200;
+                } else {
+                    au = 250;
+                }
+                slnovo1 = sl1 + au;
+                System.out.printf("com o aumento de %.2f o novo salario fica %.2f", au, slnovo1);
+                break;
+            case 3:
+                double sl2;
+                System.out.println("insira o salario do funcionario");
+                sl2 = scam.nextDouble();
+                if (sl2 <= 3000) {
+                    System.out.println("Mal remunerado");
+                } else {
+                    System.out.println("Bem remunerado");
+                }
+
+                break;
+
+            case 4:
+                System.out.println("Programa finalizado");
+                System.exit(0);
+                break;
+
+        }
+    }
+
+    public static void ex12() {
+        int ntermos, tatual, tanterior;
+        System.out.print("Digite o número de termos da série: ");
+        ntermos = scam.nextInt();
+
+        tatual = 2;
+        tanterior = 2;
+
+        for (int i = 0; i < ntermos; i++) {
+            System.out.print(tatual + " ");
+
+            if (i % 2 == 0) {
+
+                tatual = tanterior * 3 + 1;
+            } else {
+
+                tatual = tanterior / 2;
+            }
+
+            tanterior = tatual;
+        }
+    }
+
+    public static void ex13() {
+        int jog, peso, altura, time1, time2, time3, time4, time5,
+                idade1 = 0, idade2, idade3, idade4, idade5, menor = 0;
+        double midade1, midade2, midade3, midade4, midade5, maltura = 0, kg80 = 0, perc, idad1 = 0, idad2 = 0,
+                idad3 = 0,
+                idad4 = 0, idad5 = 0;
+        Random random = new Random();
+        for (jog = 0; jog <= 75; jog++) {
+            altura = random.nextInt(71) + 150;
+            maltura += altura;
+            peso = random.nextInt(61) + 50;
+            kg80 = peso > 80 ? kg80 + 1 : kg80;
+
+        }
+        for (time1 = 0; time1 <= 15; time1++) {
+            idade1 = random.nextInt(35) + 10;
+            menor = idade1 < 18 ? menor + 1 : menor;
+            idad1 += idade1;
+
+        }
+        midade1 = idad1 / 15;
+        for (time2 = 0; time2 <= 15; time2++) {
+            idade2 = random.nextInt(35) + 10;
+            menor = idade2 < 18 ? menor + 1 : menor;
+            idad2 += idade2;
+        }
+        midade2 = idad2 / 15;
+        for (time3 = 0; time3 <= 15; time3++) {
+            idade3 = random.nextInt(35) + 10;
+            menor = idade3 < 18 ? menor + 1 : menor;
+            idad3 += idade3;
+        }
+        midade3 = idad3 / 15;
+        for (time4 = 0; time4 <= 15; time4++) {
+            idade4 = random.nextInt(35) + 10;
+            menor = idade4 < 18 ? menor + 1 : menor;
+            idad4 += idade4;
+        }
+        midade4 = idad4 / 15;
+        for (time5 = 0; time5 <= 15; time5++) {
+            idade5 = random.nextInt(35) + 10;
+            menor = idade5 < 18 ? menor + 1 : menor;
+            idad5 += idade5;
+        }
+        midade5 = idad5 / 15;
+        perc = kg80 / 75 * 100;
+        System.out.println("quantidade de jogadores com menos de 18 anos é " + menor);
+        System.out.println("media das idades dos jogadores");
+        System.out.printf("Time 1 %.2f%n", midade1);
+        System.out.printf("Time 2 %.2f%n", midade2);
+        System.out.printf("Time 3 %.2f%n", midade3);
+        System.out.printf("Time 4 %.2f%n", midade4);
+        System.out.printf("Time 5 %.2f%n", midade5);
+        System.out.printf("media da altura de todos os jogadores é %.2f cm\n", maltura / 75);
+        System.out.printf("%.2f porcento dos jogadores possuem mais de 80 kg", perc);
+    }
+
+    public static void ex14() {
+        int n1, maior, menor;
+        maior = Integer.MIN_VALUE;
+        menor = Integer.MAX_VALUE;
+        System.out.println("insira um numero positivo para continuar o loop ou um negativo para encerrar");
+        while (true) {
+            System.out.println("digite um numero");
+            n1 = scam.nextInt();
+            if (n1 < 0) {
+                break;
+            }
+            if (n1 > maior) {
+                maior = n1;
+            }
+            if (n1 < menor) {
+                menor = n1;
+            }
+        }
+
+        if (maior == Integer.MIN_VALUE && menor == Integer.MAX_VALUE) {
+            System.out.println("Nenhum número positivo foi digitado.");
+        } else {
+            System.out.println("O maior valor é: " + maior);
+            System.out.println("O menor valor é: " + menor);
+        }
+    }
+
+    public static void ex15() {
+        int n1, maior, menor, par = 0, div5 = 0;
+        double media = 0;
+        maior = Integer.MIN_VALUE;
+        menor = Integer.MAX_VALUE;
+        Random random = new Random();
+
+        for (int i = 1; i <= 15; i++) {
+            System.out.println("digite um valor");
+            n1 = scam.nextInt();
+            media += n1;
+            if (n1 > maior) {
+                maior = n1;
+            }
+            if (n1 < menor) {
+                menor = n1;
+            }
+            if (n1 % 2 == 0) {
+                par++;
+
+            }
+            if (n1 % 5 == 0) {
+                div5++;
+            }
+
+        }
+        System.out.println("O menor número digitado é " + menor);
+        System.out.println("O maior número digitado é " + maior);
+        System.out.printf("A média dos números digitados é %.2f\n", media / 15);
+        System.out.println("Quantidade de números pares é " + par);
+        System.out.println("Quantidade de números divisíveis por 5 é " + div5);
+
+    }
+
 }
